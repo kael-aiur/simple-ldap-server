@@ -11,6 +11,7 @@ public class SearchResultDoneResponseHandler implements MessageHandler<SearchRes
     @Override
     public void handleMessage(IoSession session, SearchResultDone message) throws Exception {
         System.out.println(this.getClass().getName());
+        System.out.println("session:"+session);
         System.out.println(message);
         System.out.println(this.getClass().getName());
     }

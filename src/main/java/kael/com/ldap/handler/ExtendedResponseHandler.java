@@ -11,6 +11,7 @@ public class ExtendedResponseHandler implements MessageHandler<ExtendedResponse>
     @Override
     public void handleMessage(IoSession session, ExtendedResponse message) throws Exception {
         System.out.println(this.getClass().getName());
+        System.out.println("session:"+session);
         System.out.println(message);
         System.out.println(this.getClass().getName());
     }
