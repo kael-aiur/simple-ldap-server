@@ -19,9 +19,5 @@ public class BindResponseHandler implements MHandler<BindResponse> {
     public Type getProcessType() {
         return Type.SENT;
     }
-
-    @Override
-    public Class<?> genericType() {
-        return BindResponse.class;
-    }
+    
 }

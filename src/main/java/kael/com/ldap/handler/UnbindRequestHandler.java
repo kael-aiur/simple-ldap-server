@@ -21,8 +21,4 @@ public class UnbindRequestHandler implements MHandler<UnbindRequest> {
         return Type.RECEIVE;
     }
 
-    @Override
-    public Class<?> genericType() {
-        return UnbindRequest.class;
-    }
 }

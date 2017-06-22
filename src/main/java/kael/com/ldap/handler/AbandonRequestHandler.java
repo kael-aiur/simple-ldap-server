@@ -15,12 +15,6 @@ public class AbandonRequestHandler implements MHandler<AbandonRequest> {
         System.out.println(this.getClass().getName());
     }
 
-
-    @Override
-    public Class<?> genericType() {
-        return AbandonRequest.class;
-    }
-
     @Override
     public Type getProcessType() {
         return Type.RECEIVE;

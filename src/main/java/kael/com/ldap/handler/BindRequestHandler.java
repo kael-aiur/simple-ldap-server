@@ -39,14 +39,14 @@ class BindRequestHandler implements MHandler<BindRequest> {
         }
         return message.getName();
     }
-
+    
     @Override
     public Type getProcessType() {
         return Type.RECEIVE;
     }
-
+/*
     @Override
     public Class<?> genericType() {
         return BindRequest.class;
-    }
+    }*/
 }

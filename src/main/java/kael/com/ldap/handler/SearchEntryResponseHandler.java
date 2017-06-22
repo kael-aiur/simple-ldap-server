@@ -19,9 +19,4 @@ public class SearchEntryResponseHandler implements MHandler<SearchResultEntry> {
     public Type getProcessType() {
         return Type.SENT;
     }
-
-    @Override
-    public Class<?> genericType() {
-        return SearchResultEntry.class;
-    }
 }

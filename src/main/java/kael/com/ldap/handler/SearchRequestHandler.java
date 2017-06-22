@@ -51,8 +51,4 @@ public class SearchRequestHandler implements MHandler<SearchRequest> {
         return Type.RECEIVE;
     }
 
-    @Override
-    public Class<?> genericType() {
-        return SearchRequest.class;
-    }
 }

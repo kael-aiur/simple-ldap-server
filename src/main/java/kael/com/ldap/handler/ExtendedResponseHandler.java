@@ -19,9 +19,4 @@ public class ExtendedResponseHandler implements MHandler<ExtendedResponse> {
     public Type getProcessType() {
         return Type.SENT;
     }
-
-    @Override
-    public Class<?> genericType() {
-        return ExtendedResponse.class;
-    }
 }

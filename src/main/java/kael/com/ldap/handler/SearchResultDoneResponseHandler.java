@@ -20,8 +20,4 @@ public class SearchResultDoneResponseHandler implements MHandler<SearchResultDon
         return Type.SENT;
     }
 
-    @Override
-    public Class<?> genericType() {
-        return SearchResultDone.class;
-    }
 }
