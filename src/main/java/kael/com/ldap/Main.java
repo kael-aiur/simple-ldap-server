@@ -22,7 +22,25 @@ import java.util.Properties;
  * @author kael.
  */
 public class Main {
+    enum Type{
+        SEARCH,BIND
+    }
+    
     public static void main(String[] args) throws LdapException, CursorException, NamingException {
+        Type t = Type.SEARCH;
+        switch (t){
+            case BIND:
+                testBind();
+                break;
+            case SEARCH:
+                testSearch();
+                break;
+            default:
+                throw new UnsupportedOperationException(t.name());
+        }
+    }
+    
+    protected static void testBind(){
         final Properties env = new Properties();
         env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         env.put(Context.SECURITY_AUTHENTICATION, "simple");
@@ -39,5 +57,27 @@ public class Main {
             e.printStackTrace();
         }
         System.exit(exitCode);
+    }
+    
+    protected static void testSearch() throws NamingException {
+        final String ldapUrl = "ldap://[::1]:10399";
+        final Properties env = new Properties();
+        env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
+        env.put(Context.PROVIDER_URL, ldapUrl);
+        env.put(Context.SECURITY_AUTHENTICATION, "simple");
+        env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=system");
+        env.put(Context.SECURITY_CREDENTIALS, "secret");
+        final LdapContext ctx = new InitialLdapContext(env, null);
+        // ctx.setRequestControls(null);
+        final SearchControls searchControls = new SearchControls();
+        searchControls.setSearchScope(SearchControls.SUBTREE_SCOPE);
+        NamingEnumeration<?> namingEnum = ctx.search("dc=jboss,dc=org", "(uid=*)", searchControls);
+        while (namingEnum.hasMore()) {
+            SearchResult sr = (SearchResult) namingEnum.next();
+            Attributes attrs = sr.getAttributes();
+            System.out.println(attrs.get("cn"));
+        }
+        namingEnum.close();
+        ctx.close();
     }
 }

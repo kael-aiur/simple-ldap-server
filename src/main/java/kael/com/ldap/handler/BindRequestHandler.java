@@ -6,12 +6,11 @@ import org.apache.directory.api.ldap.model.message.ResultCodeEnum;
 import org.apache.directory.api.ldap.model.name.Dn;
 import org.apache.directory.api.util.Strings;
 import org.apache.mina.core.session.IoSession;
-import org.apache.mina.handler.demux.MessageHandler;
 
 /**
  * @author kael.
  */
-class BindRequestHandler implements MessageHandler<BindRequest> {
+class BindRequestHandler implements MHandler<BindRequest> {
     @Override
     public void handleMessage(IoSession session, BindRequest message) throws Exception {
         System.out.println(this.getClass().getName());
@@ -40,5 +39,14 @@ class BindRequestHandler implements MessageHandler<BindRequest> {
         }
         return message.getName();
     }
-    
+
+    @Override
+    public Type getProcessType() {
+        return Type.RECEIVE;
+    }
+
+    @Override
+    public Class<?> genericType() {
+        return BindRequest.class;
+    }
 }
