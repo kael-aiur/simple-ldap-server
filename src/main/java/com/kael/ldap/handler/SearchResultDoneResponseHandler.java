@@ -1,11 +1,13 @@
 package com.kael.ldap.handler;
 
+import leap.core.annotation.Bean;
 import org.apache.directory.api.ldap.model.message.SearchResultDone;
 import org.apache.mina.core.session.IoSession;
 
 /**
  * @author kael.
  */
+@Bean
 public class SearchResultDoneResponseHandler implements MHandler<SearchResultDone> {
     @Override
     public void handleMessage(IoSession session, SearchResultDone message) throws Exception {

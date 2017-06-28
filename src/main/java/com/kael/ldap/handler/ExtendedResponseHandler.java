@@ -1,11 +1,13 @@
 package com.kael.ldap.handler;
 
+import leap.core.annotation.Bean;
 import org.apache.directory.api.ldap.model.message.ExtendedResponse;
 import org.apache.mina.core.session.IoSession;
 
 /**
  * @author kael.
  */
+@Bean
 public class ExtendedResponseHandler implements MHandler<ExtendedResponse> {
     @Override
     public void handleMessage(IoSession session, ExtendedResponse message) throws Exception {

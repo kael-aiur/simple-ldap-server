@@ -1,5 +1,9 @@
 package com.kael.ldap;
 
+import leap.core.BeanFactory;
+import leap.core.annotation.Bean;
+import leap.core.annotation.Inject;
+import leap.core.ioc.PostCreateBean;
 import org.apache.directory.api.ldap.codec.api.LdapApiServiceFactory;
 import org.apache.mina.core.filterchain.DefaultIoFilterChainBuilder;
 import org.apache.mina.core.filterchain.IoFilter;
@@ -19,23 +23,17 @@ import java.util.concurrent.ThreadPoolExecutor;
 /**
  * @author kael.
  */
-public class LdapServer {
+@Bean
+public class LdapServer implements PostCreateBean {
     
-    protected LdapHandler handler;
+    protected @Inject LdapConfig config;
+    protected @Inject LdapHandler handler;
     protected ProtocolCodecFactory factory;
     protected IoFilterChainBuilder chain;
     protected IoAcceptor acceptor;
-    
-    
-    public LdapServer() {
-        this.handler = new LdapHandler();
-        this.factory = LdapApiServiceFactory.getSingleton().getProtocolCodecFactory();
-        this.chain = initIoFilter();
-        this.acceptor = initAcceptor();
-    }
 
     public void start() throws IOException {
-        acceptor.bind(new InetSocketAddress(10399));
+        acceptor.bind(new InetSocketAddress(config.getPort()));
     }
     
     protected IoAcceptor initAcceptor(){
@@ -57,5 +55,12 @@ public class LdapServer {
         chain.addLast( "codec", protocol);
         chain.addLast( "executor", executor);
         return chain;
+    }
+
+    @Override
+    public void postCreate(BeanFactory factory) throws Throwable {
+        this.factory = LdapApiServiceFactory.getSingleton().getProtocolCodecFactory();
+        this.chain = initIoFilter();
+        this.acceptor = initAcceptor();
     }
 }

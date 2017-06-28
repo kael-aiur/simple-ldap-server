@@ -1,5 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config xmlns="http://www.leapframework.org/schema/config">
     <base-package>com.kael.ldap</base-package>
-    
+    <properties>
+        <!-- default -->
+        <property name="db.driverClassName">com.mysql.jdbc.Driver</property>
+        <property name="db.url">jdbc:mysql://localhost:3306/sso_oauth</property>
+        <property name="db.username">root</property>
+        <property name="db.password">root</property>
+        <property name="db.maxActive">1000</property>
+        <property name="db.maxWait">10000</property>
+    </properties>
 </config>

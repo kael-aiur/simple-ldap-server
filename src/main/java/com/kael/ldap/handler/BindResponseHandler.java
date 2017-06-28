@@ -1,11 +1,13 @@
 package com.kael.ldap.handler;
 
+import leap.core.annotation.Bean;
 import org.apache.directory.api.ldap.model.message.BindResponse;
 import org.apache.mina.core.session.IoSession;
 
 /**
  * @author kael.
  */
+@Bean
 public class BindResponseHandler implements MHandler<BindResponse> {
     @Override
     public void handleMessage(IoSession session, BindResponse message) throws Exception {

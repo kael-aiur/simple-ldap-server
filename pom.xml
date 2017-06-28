@@ -19,7 +19,16 @@
             <artifactId>leap-core</artifactId>
             <version>0.6.2b</version>
         </dependency>
-        
+        <dependency>
+            <groupId>org.leapframework</groupId>
+            <artifactId>leap-orm</artifactId>
+            <version>0.6.2b</version>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.5</version>
+        </dependency>
         <!--
         <dependency>
             <groupId>org.apache.directory.server</groupId>
