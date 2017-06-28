@@ -1,4 +1,4 @@
-package kael.com.ldap;
+package com.kael.ldap;
 
 /**
  * @author kael.

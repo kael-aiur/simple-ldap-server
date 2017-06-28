@@ -14,6 +14,12 @@
             <artifactId>api-all</artifactId>
             <version>1.0.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.leapframework</groupId>
+            <artifactId>leap-core</artifactId>
+            <version>0.6.2b</version>
+        </dependency>
+        
         <!--
         <dependency>
             <groupId>org.apache.directory.server</groupId>

@@ -1,4 +1,4 @@
-package kael.com.ldap;
+package com.kael.ldap;
 
 import org.apache.directory.api.ldap.model.cursor.CursorException;
 import org.apache.directory.api.ldap.model.cursor.EntryCursor;
@@ -65,8 +65,8 @@ public class Main {
         env.put(Context.INITIAL_CONTEXT_FACTORY, "com.sun.jndi.ldap.LdapCtxFactory");
         env.put(Context.PROVIDER_URL, ldapUrl);
         env.put(Context.SECURITY_AUTHENTICATION, "simple");
-        env.put(Context.SECURITY_PRINCIPAL, "uid=admin,ou=system");
-        env.put(Context.SECURITY_CREDENTIALS, "secret");
+        env.put(Context.SECURITY_PRINCIPAL, "uid=admin,dc=bingosoft,dc=net");
+        env.put(Context.SECURITY_CREDENTIALS, "admin");
         final LdapContext ctx = new InitialLdapContext(env, null);
         // ctx.setRequestControls(null);
         final SearchControls searchControls = new SearchControls();

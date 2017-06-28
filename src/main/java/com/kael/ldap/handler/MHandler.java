@@ -1,4 +1,4 @@
-package kael.com.ldap.handler;
+package com.kael.ldap.handler;
 
 import org.apache.mina.handler.demux.MessageHandler;
 

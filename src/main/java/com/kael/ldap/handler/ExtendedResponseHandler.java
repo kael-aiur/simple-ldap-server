@@ -1,14 +1,14 @@
-package kael.com.ldap.handler;
+package com.kael.ldap.handler;
 
-import org.apache.directory.api.ldap.model.message.SearchResultEntry;
+import org.apache.directory.api.ldap.model.message.ExtendedResponse;
 import org.apache.mina.core.session.IoSession;
 
 /**
  * @author kael.
  */
-public class SearchEntryResponseHandler implements MHandler<SearchResultEntry> {
+public class ExtendedResponseHandler implements MHandler<ExtendedResponse> {
     @Override
-    public void handleMessage(IoSession session, SearchResultEntry message) throws Exception {
+    public void handleMessage(IoSession session, ExtendedResponse message) throws Exception {
         System.out.println(this.getClass().getName());
         System.out.println("session:"+session);
         System.out.println(message);

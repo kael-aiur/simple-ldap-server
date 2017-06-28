@@ -1,4 +1,4 @@
-package kael.com.ldap;
+package com.kael.ldap;
 
 import org.apache.directory.api.ldap.model.message.extended.NoticeOfDisconnect;
 

@@ -1,4 +1,4 @@
-package kael.com.ldap.handler;
+package com.kael.ldap.handler;
 
 import org.apache.directory.api.ldap.model.message.AbandonRequest;
 import org.apache.mina.core.session.IoSession;

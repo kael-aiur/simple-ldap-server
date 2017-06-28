@@ -1,14 +1,14 @@
-package kael.com.ldap.handler;
+package com.kael.ldap.handler;
 
-import org.apache.directory.api.ldap.model.message.SearchResultDone;
+import org.apache.directory.api.ldap.model.message.BindResponse;
 import org.apache.mina.core.session.IoSession;
 
 /**
  * @author kael.
  */
-public class SearchResultDoneResponseHandler implements MHandler<SearchResultDone> {
+public class BindResponseHandler implements MHandler<BindResponse> {
     @Override
-    public void handleMessage(IoSession session, SearchResultDone message) throws Exception {
+    public void handleMessage(IoSession session, BindResponse message) throws Exception {
         System.out.println(this.getClass().getName());
         System.out.println("session:"+session);
         System.out.println(message);
@@ -19,5 +19,5 @@ public class SearchResultDoneResponseHandler implements MHandler<SearchResultDon
     public Type getProcessType() {
         return Type.SENT;
     }
-
+    
 }

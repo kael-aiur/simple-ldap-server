@@ -1,6 +1,6 @@
-package kael.com.ldap;
+package com.kael.ldap;
 
-import kael.com.ldap.handler.MsgHandler;
+import com.kael.ldap.handler.MsgHandler;
 import org.apache.directory.api.ldap.codec.api.LdapApiService;
 import org.apache.directory.api.ldap.codec.api.LdapDecoder;
 import org.apache.directory.api.ldap.codec.api.LdapMessageContainer;
@@ -9,7 +9,6 @@ import org.apache.directory.api.ldap.model.exception.ResponseCarryingMessageExce
 import org.apache.directory.api.ldap.model.message.extended.NoticeOfDisconnect;
 import org.apache.mina.core.session.IoSession;
 import org.apache.mina.handler.demux.DemuxingIoHandler;
-import org.apache.mina.handler.demux.ExceptionHandler;
 
 /**
  * @author kael.
