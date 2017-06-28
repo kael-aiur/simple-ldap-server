@@ -1,6 +1,8 @@
 package com.kael.ldap.handler;
 
 import com.kael.ldap.LdapConfig;
+import com.kael.ldap.filter.ConvertSqlFilterVisitor;
+import com.kael.ldap.filter.SqlNode;
 import leap.core.annotation.Bean;
 import leap.core.annotation.Inject;
 import leap.lang.Strings;
@@ -8,6 +10,7 @@ import org.apache.directory.api.ldap.model.entry.DefaultEntry;
 import org.apache.directory.api.ldap.model.entry.Entry;
 import org.apache.directory.api.ldap.model.exception.LdapException;
 import org.apache.directory.api.ldap.model.filter.ExprNode;
+import org.apache.directory.api.ldap.model.filter.FilterVisitor;
 import org.apache.directory.api.ldap.model.filter.PresenceNode;
 import org.apache.directory.api.ldap.model.message.LdapResult;
 import org.apache.directory.api.ldap.model.message.Response;
@@ -28,6 +31,7 @@ import java.util.List;
 public class SearchRequestHandler implements MHandler<SearchRequest> {
     
     protected @Inject LdapConfig config;
+    protected @Inject FilterVisitor visitor;
     
     @Override
     public void handleMessage(IoSession session, SearchRequest request) throws Exception {
@@ -35,15 +39,7 @@ public class SearchRequestHandler implements MHandler<SearchRequest> {
             emptyEntry(session,request);
             return;
         }
-        List<String> attr = request.getAttributes();
-        ExprNode node = request.getFilter();
-        boolean typeOnly = request.getTypesOnly();
-        
-        if(node instanceof PresenceNode){
-            AttributeType at = ((PresenceNode) node).getAttributeType();
-            System.out.println(at);
-            
-        }
+        SqlNode sqlNode = (SqlNode)request.getFilter().accept(visitor);
         
         
         LdapResult result = request.getResultResponse().getLdapResult();
