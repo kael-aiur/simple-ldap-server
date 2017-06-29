@@ -51,8 +51,14 @@ class BindRequestHandler implements MHandler<BindRequest> {
     
     protected boolean checkDn(BindRequest message){
         String dn = message.getDn().getName();
+        if(Strings.isEmpty(dn)){
+            return false;
+        }
+        if(Strings.equals(dn,config.getRootDn())){
+            return true;
+        }
+        return Strings.equals(message.getDn().getParent().getName(),config.getRootDn());
         
-        return Strings.isNotEmpty(dn) && Strings.equals(dn,config.getRootDn());
     }
     
     protected BindOpCredentials parseCredentials(IoSession session, BindRequest request){
@@ -88,6 +94,9 @@ class BindRequestHandler implements MHandler<BindRequest> {
     protected void authenticateAdmin(IoSession session, BindRequest request,BindOpCredentials credentials){
         if(Strings.equals(credentials.getUsername(),config.getAdminUsername())
                 && Strings.equals(credentials.getPassword(),config.getAdminPassword())){
+            session.setAttribute(AUTHC_UP_ATTR_NAME,
+                    new BindOpUserPrincipal(config.getRootDn(),credentials.getUsername(),
+                            credentials.getPassword(),config.getRootDn()));
             bindSuccess(session,request,"ok");
         }else {
             invalidCredentials(session,request,"error");
@@ -102,7 +111,7 @@ class BindRequestHandler implements MHandler<BindRequest> {
         }else {
             Object password = up.getProperty("password");
             if(!Objects.equals(password,credentials.getPassword())){
-                invalidCredentials(session,request,"user not found");
+                invalidCredentials(session,request,"invalid credentials");
                 return;
             }else {
                 bindSuccess(session,request,"ok");

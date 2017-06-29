@@ -1,6 +1,8 @@
 package com.kael.ldap.handler;
 
 import leap.core.annotation.Bean;
+import leap.lang.logging.Log;
+import leap.lang.logging.LogFactory;
 import org.apache.directory.api.ldap.model.message.AbandonRequest;
 import org.apache.mina.core.session.IoSession;
 
@@ -9,12 +11,10 @@ import org.apache.mina.core.session.IoSession;
  */
 @Bean
 public class AbandonRequestHandler implements MHandler<AbandonRequest> {
+    private final Log log = LogFactory.get(this.getClass());
     @Override
     public void handleMessage(IoSession session, AbandonRequest message) throws Exception {
-        System.out.println(this.getClass().getName());
-        System.out.println("session:"+session);
-        System.out.println(message);
-        System.out.println(this.getClass().getName());
+        log.debug(this.getClass().getName());
     }
 
     @Override

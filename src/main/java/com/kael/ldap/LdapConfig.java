@@ -12,7 +12,10 @@ public class LdapConfig {
     protected int port=10399;
     protected String adminUsername = "ldapAdmin";
     protected String adminPassword = "ldapPwd";
-
+    protected String userTable = "sec_user";
+    
+    
+    
     public String getAdminUsername() {
         return adminUsername;
     }
@@ -44,4 +47,13 @@ public class LdapConfig {
     public void setPort(int port) {
         this.port = port;
     }
+
+    public String getUserTable() {
+        return userTable;
+    }
+
+    public void setUserTable(String userTable) {
+        this.userTable = userTable;
+    }
+
 }

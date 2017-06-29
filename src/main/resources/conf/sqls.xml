@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sqls xmlns="http://www.leapframework.org/schema/sqls">
     <command key="security.findUserDetailsById" override="true">
-        select * from sec_user where id = :userId
+        select id, login_id, name,email from sec_user where id = :userId
     </command>
 
     <command key="security.findUserDetailsByLoginName" override="true">
-        select * from sec_user where login_id = :loginName
+        select id, login_id, name, '111111' password from sec_user where login_id = :loginName
     </command>
 </sqls>
